@@ -76,9 +76,14 @@ g++ -std=c++20 main.cpp MemoryManager.cpp -o mem
 
 ## Test Case
 Example test case: 
-   - initialize a buffer of 5 chars: ----- 
-   - allocate 5 blocks of 1 char:    XXXXX
-   - free the 2nd and 4th:           X-X-X 
+   - initialize a buffer of 5 chars: FFFFF
+   - allocate 5 blocks of 1 char:    X-X-X-X-X
+   - free the 2nd and 4th:           X-F-X-F-X
+   - after defragmentation:          X-X-X-FF
+   - allocate block of 2:            X-X-X-XX
+   - free block 3:                   X-X-F-XX
+   - free block 2:                   X-F-F-XX
+   - coalesce kicks off:             X-FF-XX
 
 ---
 
